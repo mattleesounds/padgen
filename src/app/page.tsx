@@ -31,7 +31,7 @@ const Home = () => {
             max="11"
             value={key}
             onChange={(e) => setKey(Number(e.target.value))}
-            className="w-full"
+            className="w-full slider-thumb slider-track"
           />
         </div>
 
@@ -46,7 +46,7 @@ const Home = () => {
             max="3"
             value={chordTypeIndex}
             onChange={(e) => setChordTypeIndex(Number(e.target.value))}
-            className="w-full"
+            className="w-full slider-thumb slider-track"
           />
         </div>
 
@@ -68,7 +68,7 @@ const Home = () => {
             id="density-slider"
             value={density}
             onChange={(e) => setDensity(Number(e.target.value))}
-            className="w-full"
+            className="w-full slider-thumb slider-track"
           />
         </div>
 
@@ -79,7 +79,7 @@ const Home = () => {
             id="modulation-slider"
             value={modulation}
             onChange={(e) => setModulation(Number(e.target.value))}
-            className="w-full"
+            className="w-full slider-thumb slider-track"
           />
         </div>
 
@@ -90,13 +90,13 @@ const Home = () => {
             id="spatiality-slider"
             value={spatiality}
             onChange={(e) => setSpatiality(Number(e.target.value))}
-            className="w-full"
+            className="w-full slider-thumb slider-track"
           />
         </div>
 
         <button
           onClick={handleGenerate}
-          className="px-4 py-2 bg-blue-500 text-white rounded"
+          className="px-4 py-2 bg-black text-white rounded"
         >
           Generate
         </button>
@@ -105,7 +105,7 @@ const Home = () => {
       <div className="mt-8">
         {/* Placeholder for audio file */}
         <audio controls>{/* Source of the audio file goes here */}</audio>
-        <button className="px-4 py-2 bg-green-500 text-white rounded mt-2">
+        <button className="px-4 py-2 bg-black text-white rounded mt-2">
           Download
         </button>
       </div>
