@@ -15,8 +15,22 @@ const Home = () => {
   const [spatiality, setSpatiality] = useState<number>(50);
   const [chordTypeIndex, setChordTypeIndex] = useState<number>(1);
 
-  const handleGenerate = () => {
-    // Handle music generation logic here
+  const handleGenerate = async () => {
+    const response = await fetch("/api/generate-pad", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        key,
+        chordType: chordTypes[chordTypeIndex],
+        brightness,
+        // ... other parameters ...
+      }),
+    });
+
+    const data = await response.json();
+    // Handle the response (e.g., set audio source URL)
   };
 
   return (
