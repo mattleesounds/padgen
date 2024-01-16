@@ -15,22 +15,27 @@ const Home = () => {
   const [spatiality, setSpatiality] = useState<number>(50);
   const [chordTypeIndex, setChordTypeIndex] = useState<number>(1);
 
-  const handleGenerate = async () => {
-    const response = await fetch("/api/generate-pad", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        key,
-        chordType: chordTypes[chordTypeIndex],
-        brightness,
-        // ... other parameters ...
-      }),
-    });
+  // Example function in your React component
+  const generateMusic = async (description: any) => {
+    try {
+      const response = await fetch("/generate-music", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ description }),
+      });
 
-    const data = await response.json();
-    // Handle the response (e.g., set audio source URL)
+      if (!response.ok) {
+        throw new Error("Failed to generate music");
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      // Use this URL for the audio source
+    } catch (error) {
+      console.error("Error generating music:", error);
+    }
   };
 
   return (
@@ -109,7 +114,7 @@ const Home = () => {
         </div>
 
         <button
-          onClick={handleGenerate}
+          onClick={generateMusic}
           className="px-4 py-2 bg-black text-white rounded"
         >
           Generate
