@@ -15,15 +15,17 @@ const Home = () => {
   const [spatiality, setSpatiality] = useState<number>(50);
   const [chordTypeIndex, setChordTypeIndex] = useState<number>(1);
 
-  // Example function in your React component
-  const generateMusic = async (description: any) => {
+  const generateMusic = async () => {
+    // Define a default description
+    const defaultDescription = "Ethereal ambient pad in A major";
+
     try {
-      const response = await fetch("/generate-music", {
+      const response = await fetch("http://localhost:5000/generate-music", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ description }),
+        body: JSON.stringify({ description: defaultDescription }),
       });
 
       if (!response.ok) {
@@ -33,6 +35,11 @@ const Home = () => {
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       // Use this URL for the audio source
+      // For example, set the URL to an audio element's source
+      const audioPlayer = document.querySelector("audio");
+      if (audioPlayer) {
+        audioPlayer.src = url;
+      }
     } catch (error) {
       console.error("Error generating music:", error);
     }
