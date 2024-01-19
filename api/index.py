@@ -6,7 +6,8 @@ from audiocraft.data.audio import audio_write
 import io
 
 app = Flask(__name__)
-CORS(app, resources={r"/generate-music": {"origins": "http://localhost:3000"}})
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+app.config['ENV'] = 'development'
 
 """ @app.route("/generate-music", methods=['POST'])
 def generate_music():
@@ -28,5 +29,9 @@ def generate_music():
     return send_file(buffer, mimetype="audio/wav", as_attachment=True, download_name="generated_music.wav") """
 
 @app.route("/generate-music", methods=['POST'])
+@cross_origin()
 def generate_music():
     return "Music generation endpoint reached"
+
+if __name__ == '__main__':
+    app.run(debug=True)
