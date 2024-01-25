@@ -1,13 +1,12 @@
 # api/index.py
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS, cross_origin
-from audiocraft.models import MusicGen
-from audiocraft.data.audio import audio_write
-import io
+""" from audiocraft.models import MusicGen
+from audiocraft.data.audio import audio_write """
+""" import io """
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "*"}})
-app.config['ENV'] = 'development'
+CORS(app)
 
 """ @app.route("/generate-music", methods=['POST'])
 def generate_music():
@@ -31,7 +30,14 @@ def generate_music():
 @app.route("/generate-music", methods=['POST'])
 @cross_origin()
 def generate_music():
-    return "Music generation endpoint reached"
+    return {"Music": "Generated"}, 200, {'Access-Control-Allow-Origin': '*'}
 
-if __name__ == '__main__':
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    return response
+
+if __name__ == "__main__":
     app.run(debug=True)

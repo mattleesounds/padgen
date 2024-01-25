@@ -15,7 +15,7 @@ const Home = () => {
   const [spatiality, setSpatiality] = useState<number>(50);
   const [chordTypeIndex, setChordTypeIndex] = useState<number>(1);
 
-  const generateMusic = async () => {
+  /* const generateMusic = async () => {
     // Define a default description
     const defaultDescription = "Ethereal ambient pad in A major";
 
@@ -42,6 +42,28 @@ const Home = () => {
       }
     } catch (error) {
       console.error("Error generating music:", error);
+    }
+  }; */
+
+  const generateMusic = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/generate-music", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const textResponse = await response.text();
+      console.log("Response from server:", textResponse);
+
+      // You can now use this textResponse for display or further processing
+    } catch (error) {
+      console.error("Error in API call:", error);
     }
   };
 
