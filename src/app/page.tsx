@@ -15,12 +15,12 @@ const Home = () => {
   const [spatiality, setSpatiality] = useState<number>(50);
   const [chordTypeIndex, setChordTypeIndex] = useState<number>(1);
 
-  /* const generateMusic = async () => {
+  const generateMusic = async () => {
     // Define a default description
     const defaultDescription = "Ethereal ambient pad in A major";
 
     try {
-      const response = await fetch("http://localhost:5000/generate-music", {
+      const response = await fetch("http://127.0.0.1:5000/generate-music", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,8 +34,6 @@ const Home = () => {
 
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
-      // Use this URL for the audio source
-      // For example, set the URL to an audio element's source
       const audioPlayer = document.querySelector("audio");
       if (audioPlayer) {
         audioPlayer.src = url;
@@ -43,11 +41,11 @@ const Home = () => {
     } catch (error) {
       console.error("Error generating music:", error);
     }
-  }; */
+  };
 
-  const generateMusic = async () => {
+  /*  const generateMusic = async () => {
     try {
-      const response = await fetch("http://localhost:5000/generate-music", {
+      const response = await fetch("http://127.0.0.1:5000/generate-music", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,11 +59,10 @@ const Home = () => {
       const textResponse = await response.text();
       console.log("Response from server:", textResponse);
 
-      // You can now use this textResponse for display or further processing
     } catch (error) {
       console.error("Error in API call:", error);
     }
-  };
+  }; */
 
   return (
     <div className="container mx-auto p-4">
