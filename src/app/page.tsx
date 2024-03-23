@@ -3,6 +3,9 @@ import Image from "next/image";
 // pages/index.tsx or components/Home.tsx
 import { useState } from "react";
 import "../styles/sliderStyles.css";
+import Replicate from "replicate";
+
+const replicate = new Replicate();
 
 const chordTypes = ["Drone", "Neutral", "Major", "Minor"];
 
@@ -16,53 +19,20 @@ const Home = () => {
   const [chordTypeIndex, setChordTypeIndex] = useState<number>(1);
 
   const generateMusic = async () => {
-    // Define a default description
-    const defaultDescription = "Ethereal ambient pad in A major";
+    /*   const input = {
+      prompt:
+        "Edo25 major g melodies that sound triumphant and cinematic. Leading up to a crescendo that resolves in a 9th harmonic",
+      duration: 33,
+      model_version: "stereo-large",
+      normalization_strategy: "peak",
+    };
 
-    try {
-      const response = await fetch("http://127.0.0.1:5000/generate-music", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ description: defaultDescription }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to generate music");
-      }
-
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      const audioPlayer = document.querySelector("audio");
-      if (audioPlayer) {
-        audioPlayer.src = url;
-      }
-    } catch (error) {
-      console.error("Error generating music:", error);
-    }
+    const output = await replicate.run(
+      "meta/musicgen:b05b1dff1d8c6dc63d14b0cdb42135378dcb87f6373b0d3d341ede46e59e2b38",
+      { input }
+    );
+    console.log(output); */
   };
-
-  /*  const generateMusic = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:5000/generate-music", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const textResponse = await response.text();
-      console.log("Response from server:", textResponse);
-
-    } catch (error) {
-      console.error("Error in API call:", error);
-    }
-  }; */
 
   return (
     <div className="container mx-auto p-4">
